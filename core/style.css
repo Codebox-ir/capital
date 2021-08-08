@@ -1,0 +1,99 @@
+/* Debugger */
+
+.debugger {
+    font-family: Tahoma;
+    direction: ltr;
+    max-height: 50%;
+    overflow: hidden;
+    padding: 5px 20px;
+    border: #f8e6dc 5px solid;
+    z-index: 9999999999;
+    opacity: 0.9;
+    color: #e5c80e;
+    background-color: #010c11;
+    transition: all 550ms;
+}
+.debugger:hover {
+    overflow-y: scroll;
+    opacity: 1;
+    transition: all 300ms;
+}
+
+#debugger {
+    position: fixed;
+    bottom: 0;
+    left: 15%;
+    right: 15%;
+    max-height: 5%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 0;
+}
+
+#debugger:hover {
+    overflow-y: scroll;
+    max-height: 70%;
+    transition: all 180ms;
+}
+.debugger h4 {
+    text-align: center
+}
+
+.debugger table {
+    margin: 20px auto;
+    width: 96%;
+}
+
+.debugger tbody {
+
+}
+
+.debugger tr {
+    font-size: 0.9em;
+    display: table-row;
+}
+
+.debugger tr[class^='bg-'] {
+    color: white;
+    border-bottom: 1px Solid;
+    background-color: #3f403a;
+}
+
+.debugger th {
+    text-align: center;
+    padding: 10px;
+}
+
+.debugger td {
+    font-size: 12px;
+    padding: 5px 5px;
+    text-align: left;
+    color: #eee
+}
+
+.debugger .white {color: #fff !important;}
+.debugger .bg-white {background-color: #eee !important;}
+
+.debugger .success {color: #286b0f!important;}
+.debugger .bg-success {background-color: #286b0f!important;}
+
+.debugger .error {color: #ce1e1e!important;}
+.debugger .bg-error {background-color: #ce1e1e!important;}
+
+.debugger .core {background-color: #ef661b !important;}
+.debugger .bg-core {background-color: #ef661b !important;}
+
+.debugger .db {color: #aa7b10 !important;}
+.debugger .bg-db {background-color: #aa7b10 !important;}
+
+.debugger .lib {color: #194de2!important;}
+.debugger .bg-lib {background-color: #194de2!important;}
+
+.debugger .timer {color: #416e7b !important;}
+.debugger .bg-timer {background-color: #416e7b!important;}
+
+.debugger .plugin {color: #5c73d7!important;}
+.debugger .bg-plugin {background-color: #5c73d7!important;}
+
+.debugger .dark {color: #071923 !important;}
+.debugger .bg-dark {background-color: #071923 !important;}

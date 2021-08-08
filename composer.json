@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "classmap": ["core/lib/"]
+  },
+  "require": {
+    "php": ">=8.0.0",
+    "ext-mysqli": "*",
+    "ext-mbstring": "*",
+    "ext-pdo_sqlite": "*"
+  },
+  "name": "codebox/capital",
+  "description": "Capital CRM"
+}

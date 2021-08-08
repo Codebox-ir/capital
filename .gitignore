@@ -1,0 +1,62 @@
+##########################################################################
+# app.config.ini
+# Application configurations
+##########################################################################
+# @package          Mahan 4
+# @category         app_config
+# @author           Milad Abooali <m.abooali@hotmail.com>
+# @copyright        2012 - 2021 (c) Codebox
+# @license          https://codebox.ir/cbl  CBL v1.0
+##########################################################################
+# @version          1.0
+# @since            4.0 First time
+# @deprecated       -
+# @link             -
+# @see              -
+# @example          -
+##########################################################################
+
+### Mahan Core ###
+/core/session
+/files/cache
+/files/logs
+
+### Composer Exceptin ###
+/vendor/
+
+### IDE Exceptin ###
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+cmake-build-*/
+.idea/**/mongoSettings.xml
+*.iws
+out/
+.idea_modules/
+atlassian-ide-plugin.xml
+.idea/replstate.xml
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+.idea/httpRequests
+.idea/caches/build_file_checksums.ser
+.idea/**/sonarlint/
+.idea/**/sonarIssues.xml
+.idea/**/markdown-navigator.xml
+.idea/**/markdown-navigator-enh.xml
+.idea/**/markdown-navigator/
+.idea/$CACHE_FILE$
+.idea/codestream.xml
