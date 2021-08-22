@@ -76,14 +76,10 @@
          *
          * @param string $path
          * @return string
-         * @throws Exception
          */
         public static function css(string $path): string
         {
-            if(file_exists($path))
-                return '<link rel="stylesheet" type="text/css" href="'.$path.'">';
-            else
-                throw new Exception("<strong style='color: #ef661b'>$path</strong> is not exist.");
+            return '<link rel="stylesheet" type="text/css" href="'.$path.'">';
         }
 
         /**
@@ -106,14 +102,10 @@
          * @param string $path
          * @param string|null $defer
          * @return string
-         * @throws Exception
          */
-        public static function js(string $path, ?string $defer=defer): string
+        public static function js(string $path, ?string $defer='defer'): string
         {
-            if(file_exists($path))
-                return "<script src='$path'$defer></script>";
-            else
-                throw new Exception("<strong style='color: #ef661b'>$path</strong> is not exist.");
+            return "<script src='$path'$defer></script>";
         }
 
         /**
@@ -141,7 +133,7 @@
          */
         public static function jsConsole(string $value): void
         {
-            echo "<script>console.log($value)</script>";
+            echo "<script>console.log('$value')</script>";
         }
 
         /**
