@@ -2,8 +2,17 @@
  * Guests Pages
  */
 
-    $('body').on('click','div > p', function() {
-        $(this).m4_Ajax();
+    $('body').on('submit','form#form-register', function(e)
+    {
+        e.preventDefault();
+        let ajaxOptions = {
+            call:'add',
+            file:'user',
+            type:'form'
+        };
+        $(this).m4_Ajax(ajaxOptions, function(call){
+            console.log(call.res);
+        });
     });
 
 

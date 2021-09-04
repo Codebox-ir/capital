@@ -66,6 +66,8 @@
     mb_http_output('utf-8');
     mb_language('uni');
     mb_regex_encoding('utf-8');
+    define('APP_URL',APP['WS']['protocol'] . APP['WS']['url']);
+    define('APP_URL_PORT',APP['WS']['protocol'] . APP['WS']['url'] . ':' . APP['WS']['port']);
 
     /**
      * Autoloader - composer
@@ -84,7 +86,7 @@
     try {
         if(($_GET['M4debugger'] ?? false) || APP['CONFIG']['debugger']==2) {
             $m_global['header'][] = m::css('core/style.css');
-            $m_global['header'][] = m::js('core/jquery-3.6.0.min.js',false);
+            $m_global['header'][] = m::js('core/jquery-3.6.0.min.js',true);
             $m_global['header'][] = m::js('core/json-view.js',false);
         }
     } catch(Exception $e) {
@@ -150,6 +152,16 @@
     $_SESSION['M4']['TOKENS']['ajax'] = md5(APP['TOKEN']['ajax'].session_id());
     $_SESSION['M4']['TOKENS']['uid_old'] = $_SESSION['M4']['TOKENS']['uid_new'] ?? null;
     $m_global['uid'] = md5(APP['TOKEN']['mahan'].m::randomString());
+
+    /**
+     * Echo Ajax Token
+     */
+    $m_global['header'][] = '<meta name="app-t" content="'.md5(APP['TOKEN']['ajax'].session_id()).'">';
+
+    /**
+     * User
+     */
+    $user = (MAHAN['LIB']['user']) ?  new user(($_SESSION['M']['user']['id'] ?? 0), $debugger) : null;
 
     /**
      * Routing
