@@ -29,8 +29,8 @@ use Mahan4\debugger;
  */
 class captcha {
 
-    private string $bg_path = APP['root'].'plugins/backgrounds/';
-    private string $font_path =  APP['root'].'/fonts/';
+    private string $bg_path = 'plugins/captcha/backgrounds/';
+    private string $font_path =  'plugins/captcha/fonts/';
     private string $error='';
     private ?debugger $debugger;
     private int $length=1;
@@ -39,7 +39,7 @@ class captcha {
     /**
      * captcha constructor.
      */
-    function __construct(int $id, debugger|null $debugger=null) {
+    function __construct(?debugger $debugger=null) {
         $this->debugger = $debugger;
         if( !function_exists('gd_info') ) {
             $this->error = 'Required GD library is missing';
@@ -49,9 +49,9 @@ class captcha {
                 $this->length = ($_SESSION['plugins']['captcha']['length'] < 10) ? $_SESSION['plugins']['captcha']['length'] : 9;
             $rate = $this->length/3;
             $this->config = array(
-                'code' => '',
-                'min_length' => 2+$rate,
-                'max_length' => 3+$rate,
+                'code' => $_SESSION['plugins']['captcha']['code'] ?? null,
+                'min_length' => 3+$rate,
+                'max_length' => 4+$rate,
                 'backgrounds' => array(
                     $this->bg_path.$this->length.'.png',
                     $this->bg_path.(($this->length == 1) ? 2 : ($this->length-1)).'.png',
@@ -86,14 +86,14 @@ class captcha {
                     $this->font_path . 'font32.ttf',
                     $this->font_path . 'font34.ttf'
                 ),
-                'characters' => 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789',
+                'characters' => 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmknpqrstuvwxyz23456789',
                 'min_font_size' => 9-$rate,
                 'max_font_size' => 25+$rate,
                 'color' => '#'.rand(1,9).rand(1,9).rand(1,9),
                 'angle_min' => 0,
                 'angle_max' => 120,
                 'shadow' => true,
-                'shadow_color' => '#fff',
+                'shadow_color' => '#FFF',
                 'shadow_offset_x' => -1,
                 'shadow_offset_y' => 1
             );
@@ -117,15 +117,17 @@ class captcha {
     }
 
     /**
-     * Generate Code
+     * New Code
      */
-    private function genCode() : void
+    public function new() : void
     {
+        $this->config['code'] = '';
         $length = mt_rand($this->config['min_length'], $this->config['max_length']);
         while(strlen($this->config['code']) < $length) {
-            $this->config['code'] .= substr($this->config['characters'], mt_rand() % (strlen($this->config['characters'])), 1);
+            $characters = str_shuffle($this->config['characters']);
+            $this->config['code'] .= substr($this->config['characters'], mt_rand() % (strlen($characters)), 1);
         }
-        $this->debugger?->log('Code','0','captcha', $this->config['code']);
+        $this->debugger?->log('Captcha','1','Plugins', $this->config['code']);
         $_SESSION['plugins']['captcha']['code'] = $this->config['code'];
     }
 
@@ -152,11 +154,10 @@ class captcha {
     }
 
     /**
-     * Generate Image
+     * Render Captcha
      */
-    public function new() : void
+    public function render() : void
     {
-        $this->genCode();
 
         $background = $this->config['backgrounds'][mt_rand(0, count($this->config['backgrounds']) -1)];
         list($bg_width, $bg_height, $bg_type, $bg_attr) = getimagesize($background);

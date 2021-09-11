@@ -49,4 +49,5 @@
         </div>
     </div>
 </footer>
+<?php foreach($this->Global_DATA['footer'] as $item) echo $item; ?>
 <script src="<?= ASSETS_PATH ?>js/guest.js"></script>

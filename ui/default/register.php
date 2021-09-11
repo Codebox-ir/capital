@@ -25,19 +25,20 @@ try {
                                 <form id="form-register" name="register">
                                     <label for="email">Email</label>
                                     <div class="mb-3">
-                                        <input id="email" name="email" type="email" class="form-control" placeholder="Email">
+                                        <input id="email" name="email" type="email" class="form-control" placeholder="Email" required>
                                     </div>
                                     <label for="first-name">First Name</label>
                                     <div class="mb-3">
-                                        <input id="first-name" name="f_name" type="text" class="form-control" placeholder="First Name">
+                                        <input id="first-name" name="f_name" type="text" class="form-control" placeholder="First Name" required>
                                     </div>
                                     <label for="last-name">Last Name</label>
                                     <div class="mb-3">
-                                        <input id="last-name" name="l_name" type="text" class="form-control" placeholder="Last Name">
+                                        <input id="last-name" name="l_name" type="text" class="form-control" placeholder="Last Name" required>
                                     </div>
                                     <label for="country">Country</label>
                                     <div class="mb-3">
-                                        <select id="country" name="country" class="form-control" placeholder="Country">
+                                        <select id="country" name="country" class="form-control" required>
+                                            <option value="" disabled selected>Select Country</option>
                                             <?php foreach ($this->Page_DATA->countries as $code=>$country) { ?>
                                                 <option value="<?= $code ?>"><?= $country ?></option>
                                             <?php } ?>
@@ -45,14 +46,23 @@ try {
                                     </div>
                                     <label for="city">City</label>
                                     <div class="mb-3">
-                                        <input id="city" name="city" type="text" class="form-control" placeholder="City">
+                                        <input id="city" name="city" type="text" class="form-control" placeholder="City" required>
                                     </div>
-
+                                    <label for="city">Password</label>
+                                    <div class="mb-3">
+                                        <input id="password" name="password" type="password" class="form-control" placeholder="Password" autocomplete="new-password" required>
+                                    </div>
+                                    <label for="city">Retype Password</label>
+                                    <div class="mb-3">
+                                        <input id="re-password" name="password"  type="password" class="form-control" placeholder="Password" autocomplete="new-password" required>
+                                    </div>
                                     <label for="city">Captcha</label>
+                                    <div class="mb-3 plugin-captcha">
+                                        <img alt="captcha" src="">
+                                        <button type="button" class="btn recaptcha"><i class="fas fa-redo-alt"></i> </button>
+                                    </div>
                                     <div class="mb-3">
-                                        <img src="">                                    </div>
-                                    <div class="mb-3">
-                                        <input id="city" name="city" type="text" class="form-control" placeholder="City">
+                                        <input id="captcha" name="captcha" type="text" class="form-control" placeholder="Captcha" autocomplete="captchaFalse" required>
                                     </div>
 
                                     <div class="text-center">

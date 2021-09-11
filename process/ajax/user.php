@@ -23,11 +23,11 @@
     use Mahan4\debugger;
     use Mahan4\Plugins\userForm;
     use Exception;
+    use Mahan4\user;
 
     function add(?debugger $debugger) : array {
-        $res['data']=[];
-        $required_fields = userForm::$REQUIRED;
-        foreach($required_fields as $fields)
+        $res=$data=$insert=[];
+        foreach(userForm::$REQUIRED as $fields)
             if(!($_POST[$fields] ?? false))
                 $res['e']['required'][] = $fields;
         foreach ($_POST as $k=>$v)
@@ -36,13 +36,20 @@
                     $data[$k] = $v;
                 } else {
                     try {
-                        $res['data'][$k] = userForm::$k($v);
+                        $data[$k] = userForm::$k($v);
                         $debugger?->log('Type Check','1','AJAX', $k.' : '.$v);
                     } catch (Exception $e) {
                         $debugger?->log('Type Check','0','AJAX', $e->getMessage());
                         $res['e']['validator'][] = $e->getMessage();
                     }
                 }
+        if($res['e'] ?? false)
+            return $res;
+        global $user;
+        $user->select(#)
+        foreach (userForm::$COLS as $col)
+            $insert[$col] = $data[$col] ?? null;
+        $res['data'] = $user->add($insert);
         return $res;
     }
 

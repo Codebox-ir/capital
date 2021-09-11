@@ -35,6 +35,8 @@
         private ?minifier $minifier=null;
         private $Global_DATA;
         private $Page_DATA;
+        public array $Plugins=[];
+
         /**
          * View constructor.
          */
@@ -72,6 +74,12 @@
             $_SESSION['M4']['TOKENS']['expired'] = time()+APP['CONFIG']['csrf'];
             if(isset($this->view['process']))
                 $this->_process();
+            if($this->Plugins)
+                foreach ($this->Plugins as $plugin) {
+                    $this->debugger?->log('initial','1','Plugins', $plugin);
+                    $this->Global_DATA ['header'][] = m::css("assets/plugins/$plugin/style.css");
+                    $this->Global_DATA ['footer'][] = m::js("assets/plugins/$plugin/script.js");
+                }
             if(!APP['CONFIG']['maintenance'] && APP['CONFIG']['cache'] && $this->view['cache']) {
                 $file_name = str_replace('/','_', $_SERVER['REDIRECT_URL'] ?? '//');
                 $cached_file_path = 'files/cache/'.$file_name.'.php';

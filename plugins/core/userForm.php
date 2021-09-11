@@ -29,13 +29,22 @@
      */
     class userForm
     {
+        static array $COLS = [
+            'email',
+            'f_name',
+            'l_name',
+            'country',
+            'city',
+            'password'
+        ];
 
         static array $REQUIRED = [
             'email',
             'f_name',
             'l_name',
             'country',
-            'city'
+            'city',
+            'password'
         ];
 
         /**
@@ -114,6 +123,17 @@
             if(sanitize::isMix($value,1,1,1)==null && (strlen($value)>5))
                 return $value;
             throw new Exception('Password is not strong!');
+        }
+
+        /**
+         * Captcha Plugin
+         * @throws Exception
+         */
+        public static function captcha(mixed $value) :string
+        {
+            if(APP['PLUGIN']['captcha'] && strtolower($value)===strtolower($_SESSION['plugins']['captcha']['code']))
+                return true;
+            throw new Exception('Captcha is not valid!');
         }
 
     }

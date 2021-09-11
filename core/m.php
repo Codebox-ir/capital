@@ -105,7 +105,7 @@
          */
         public static function js(string $path, ?string $defer='defer'): string
         {
-            return "<script src='$path'$defer></script>";
+            return "<script src='$path' $defer></script>";
         }
 
         /**
@@ -240,5 +240,18 @@
             return ($ip) ?? '';
         }
 
+        /**
+         * Load Plugin
+         */
+        public static function plugin(string $plugin) : object
+        {
+            global $view;
+            global $debugger;
+            if(APP['PLUGIN']["captcha"]) {
+                $view->Plugins[] = $plugin;
+                $class= "\Plugins\captcha\\$plugin";
+                return new $class($debugger);
+            }
+        }
 
     }

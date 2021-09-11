@@ -36,6 +36,7 @@ AddDefaultCharset UTF-8
 	RewriteCond %{REQUEST_URI} !/assets
 	RewriteRule . index.php [L]
 
+    RewriteRule ^assets/plugins/([^/]+)/([^/]+)/?$ plugins/$1//$2 [L]
     RewriteRule ^assets/([^/]+)/([^/]+)/([^/]+)/?$ ui/$1/assets/$2/$3 [L]
 
 ## SERVOUT
