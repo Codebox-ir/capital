@@ -50,4 +50,26 @@
     </div>
 </footer>
 <?php foreach($this->Global_DATA['footer'] as $item) echo $item; ?>
+<!--   Core JS Files   -->
+<script src="<?= ASSETS_PATH ?>js/popper.min.js"></script>
+<script src="<?= ASSETS_PATH ?>js/bootstrap.min.js"></script>
+<script src="<?= ASSETS_PATH ?>js/perfect-scrollbar.min.js"></script>
+<script src="<?= ASSETS_PATH ?>js/smooth-scrollbar.min.js"></script>
+<script src="<?= ASSETS_PATH ?>js/toastr.js"></script>
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+            damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+</script>
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="<?= ASSETS_PATH ?>js/soft-ui-dashboard.min.js?v=1.0.3"></script>
 <script src="<?= ASSETS_PATH ?>js/guest.js"></script>
+</body>
+
+</html>

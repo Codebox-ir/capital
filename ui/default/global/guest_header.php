@@ -21,6 +21,7 @@
     <link href="<?= ASSETS_PATH ?>css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="<?= ASSETS_PATH ?>css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+    <link href="<?= ASSETS_PATH ?>css/toastr.css" rel="stylesheet" />
     <link id="pagestyle" href="<?= ASSETS_PATH ?>css/codebox.css" rel="stylesheet" />
 
     <?php foreach($this->Global_DATA['header'] as $item) echo $item; ?>

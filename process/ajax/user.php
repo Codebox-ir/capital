@@ -29,7 +29,7 @@
         $res=$data=$insert=[];
         foreach(userForm::$REQUIRED as $fields)
             if(!($_POST[$fields] ?? false))
-                $res['e']['required'][] = $fields;
+                $res['e'] = $fields;
         foreach ($_POST as $k=>$v)
             if($v)
                 if(!method_exists('Mahan4\Plugins\userForm', $k)) {
@@ -40,16 +40,23 @@
                         $debugger?->log('Type Check','1','AJAX', $k.' : '.$v);
                     } catch (Exception $e) {
                         $debugger?->log('Type Check','0','AJAX', $e->getMessage());
-                        $res['e']['validator'][] = $e->getMessage();
+                        $res['e'] = $e->getMessage();
                     }
                 }
+        global $user;
+        if($user->selectEmail($data['email'])){
+            $res['e'] = "This email address has an account in our site!";
+            $debugger?->log('Unique Check','0','AJAX', $res['e']);
+        }
         if($res['e'] ?? false)
             return $res;
-        global $user;
-        $user->select(#)
         foreach (userForm::$COLS as $col)
             $insert[$col] = $data[$col] ?? null;
         $res['data'] = $user->add($insert);
+        if($res['data']){
+            $_SESSION['M4']['user']['id']=$res['data'];
+            $user->sync($res['data']);
+        }
         return $res;
     }
 

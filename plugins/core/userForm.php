@@ -104,24 +104,13 @@
         }
 
         /**
-         * Password New
-         * @throws Exception
-         */
-        public static function password_new(mixed $value) :string
-        {
-            if(sanitize::isMix($value,1,1,1)==null && (strlen($value)>5))
-                return password_hash($value, PASSWORD_DEFAULT);
-            throw new Exception('Password is not strong!');
-        }
-
-        /**
          * Password Get
          * @throws Exception
          */
         public static function password(mixed $value) :string
         {
             if(sanitize::isMix($value,1,1,1)==null && (strlen($value)>5))
-                return $value;
+                return password_hash($value, PASSWORD_DEFAULT);
             throw new Exception('Password is not strong!');
         }
 

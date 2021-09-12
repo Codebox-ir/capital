@@ -25,35 +25,37 @@
 
     // Login
     $routing['login']['/'] = [
+        'process'   =>  'guest.php',
         'ui'        =>  'login',
         'cache'     =>  true,
-        'plugin'    =>  false
     ];
     // Register
     $routing['register']['/'] = [
-        'process'        =>  'register.php',
+        'process'   =>  'guest.php',
         'ui'        =>  'register',
         'cache'     =>  true,
-        'plugin'    =>  false
+    ];
+    // dashboard
+    $routing['dashboard']['/'] = [
+        'process'   =>  'dashboard.php',
+        'ui'        =>  'dashboard',
+        'cache'     =>  true,
     ];
     // Home
     $routing['/'] = $routing['home']['/'] = $routing['index']['/'] = [
         'process'   =>  'main/test.php',
         'ui'        =>  'home',
         'cache'     =>  true,
-        'plugin'    =>  false
     ];
 
     // Error 404
     $routing['maintenance']['/'] = [
         'ui'        =>  'maintenance',
         'cache'     =>  true,
-        'plugin'    =>  false
     ];
 
     // Error 404
     $routing['404']['/'] = [
         'ui'        =>  '404',
         'cache'     =>  false,
-        'plugin'    =>  false
     ];
